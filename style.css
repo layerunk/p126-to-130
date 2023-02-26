@@ -1,0 +1,50 @@
+#title{
+    height: 180px;
+    width: 100%;
+    background-color: white;
+    color: navy;
+}
+
+#za{
+    font-size: 50px;
+    font-family: 'Sedgwick Ave Display', cursive;
+}
+
+#wah{
+    font-family: 'Red Hat Display', sans-serif;
+}
+
+canvas{
+    border-radius:40px;
+    border: 5px navy solid;
+}
+
+#click{
+    font-size: 30px;
+    font-weight: bold;
+    width: 100px;
+    height:70px;
+    border: 5px navy solid;
+    color:navy;
+    background-color: white;
+}
+
+#speed{
+    float:left;
+}
+
+#speedgif{
+    float:left;
+    width:200px;
+    border-radius: 100px;
+}
+
+#volume{
+    float:right;
+}
+
+#volumegif{
+    float:right;
+    width:200px;
+    border-radius: 100px;
+}
