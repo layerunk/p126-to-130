@@ -5,6 +5,10 @@ function setup(){
 
     video = createCapture(VIDEO);
     video.hide();
+
+    
+    poseNet = ml5.poseNet(video, consoler);
+    poseNet.on("pose" , results);
 }
 
 function preload(){
@@ -14,11 +18,118 @@ function preload(){
     son = 0;
 }
 
+red12= 0;
+green12 = 0;
+blue12 = 0;
+s= 0;
+
+rainbow = "";
+
+leftWristY = 0;
+leftWristX = 0;
+rightWristY= 0;
+rightWristX = 0;
+discant = "";
+lscore= 0;
+
+function disco(){
+    discant = "true";
+    red12 = floor(Math.random() * 256) + 1;
+    green12 = floor(Math.random() * 256) + 1;
+    blue12 = floor(Math.random() * 256) + 1;
+
+    console.log( red12, blue12, green12);
+}
+
 function draw(){
+
+    if(s < 50){
+        s = s + 1;
+    }
+
+    if(red12 < 150){
+        red12 = floor(Math.random() * 256) + 1;
+    }
+    if(green12 < 150){
+        green12 = floor(Math.random() * 256) + 1;
+    }
+    if(blue12 < 150){
+        blue12 = floor(Math.random() * 256) + 1;
+    }
+    
+    if(blue12 > 150 && green12 > 150){
+        console.log("first parameter");
+        if(red12 > 150){
+            console.log("second parameter");
+            if(discant == "true" && s >= 10){
+                s = 0;
+                tint(red12 , green12 , blue12);
+                disco();
+            }
+        }
+    }
+    
     image(video, 0, 0, 600, 400);
+    stroke("black");
+    fill("red");
+
+    if(lscore > 0.2){
+        
+        circle(leftWristX - 20, leftWristY - 50, 15);
+
+
+        if(leftWristY >= 300 && leftWristY < 400){
+            son1.setVolume(1);
+            son2.setVolume(1);
+            son3.setVolume(1);
+        }
+
+        if(leftWristY >= 200 && leftWristY < 300){
+            son1.setVolume(0.75);
+            son2.setVolume(0.75);
+            son3.setVolume(0.75);
+        }
+
+        if(leftWristY >= 100 && leftWristY < 200){
+            son1.setVolume(0.5);
+            son2.setVolume(0.5);
+            son3.setVolume(0.5);
+        }
+
+        if(leftWristY > 0 && leftWristY < 100){
+            son1.setVolume(0.25);
+            son2.setVolume(0.25);
+            son3.setVolume(0.25);
+        }
+    }
+}
+
+
+function consoler(){
+    console.log("Initilization has begun");
+}
+
+function results(result){
+    if(result.length > 0){
+        console.log("results will be displayed");
+        leftWristX = Math.floor(result[0].pose.leftWrist.x);
+        leftWristY = Math.floor(result[0].pose.leftWrist.y);
+        rightWristX = Math.floor(result[0].pose.rightWrist.x);
+        rightWristY = Math.round(result[0].pose.rightWrist.y);
+
+        console.log("Left Wrist = " + leftWristX + "," + leftWristY + " Right Wrist = " + rightWristX  + "," +  rightWristY);
+        lscore = result[0].pose.keypoints[9].score;
+    }
 }
 
 function play12(){
+    son1.stop();
+    son2.stop();
+    son3.stop();
+
+    son = 1;
+    son1.rate(1);
+    son1.setVolume(1);
     son1.play();
 }
 

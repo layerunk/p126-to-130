@@ -19,10 +19,10 @@ canvas{
     border: 5px navy solid;
 }
 
-#click , #click1, #click2{
+#click , #click1, #click2, #click3{
     font-size: 30px;
     font-weight: bold;
-    width: 100px;
+    width: fit-content;
     height:70px;
     border: 5px navy solid;
     color:navy;
