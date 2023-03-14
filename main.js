@@ -31,6 +31,7 @@ rightWristY= 0;
 rightWristX = 0;
 discant = "";
 lscore= 0;
+rscore= 0;
 
 function disco(){
     discant = "true";
@@ -79,27 +80,65 @@ function draw(){
 
 
         if(leftWristY >= 300 && leftWristY < 400){
+            document.getElementById("volume").innerHTML = "volume = Max volume";
             son1.setVolume(1);
             son2.setVolume(1);
             son3.setVolume(1);
         }
 
         if(leftWristY >= 200 && leftWristY < 300){
+            document.getElementById("volume").innerHTML = "Volume = 0.75";
             son1.setVolume(0.75);
             son2.setVolume(0.75);
             son3.setVolume(0.75);
         }
 
         if(leftWristY >= 100 && leftWristY < 200){
+            document.getElementById("volume").innerHTML = "Volume = 0.5";
             son1.setVolume(0.5);
             son2.setVolume(0.5);
             son3.setVolume(0.5);
         }
 
         if(leftWristY > 0 && leftWristY < 100){
+            document.getElementById("volume").innerHTML = "Volume = 0.25";
             son1.setVolume(0.25);
             son2.setVolume(0.25);
             son3.setVolume(0.25);
+        }
+    }
+
+    if(rscore > 0.2){
+        
+        circle(rightWristX - 20, rightWristY - 100, 15);
+
+
+        if(rightWristY >= 300 && rightWristY < 400){
+            document.getElementById("speed").innerHTML = "Speed = 2x";
+            son1.rate(2);
+            son2.rate(2);
+            son3.rate(2);
+        }
+
+        if(rightWristY >= 200 && rightWristY < 300){
+            document.getElementById("speed").innerHTML = "Speed = 1.5x";
+            son1.rate(1.5);
+            son2.rate(1.5);
+            son3.rate(1.5);
+        }
+
+        if(rightWristY >= 100 && rightWristY < 200){
+            document.getElementById("speed").innerHTML = "Speed = 1x";
+            son1.rate(1);
+            son2.rate(1);
+            son3.rate(1);
+        }
+
+        if(rightWristY > 0 && rightWristY < 100){
+            document.getElementById("speed").innerHTML = "Speed = 0.5x";
+            son1.rate(0.5);
+            son2.rate(0.5);
+            son3.rate(0.5);
         }
     }
 }
@@ -119,6 +158,7 @@ function results(result){
 
         console.log("Left Wrist = " + leftWristX + "," + leftWristY + " Right Wrist = " + rightWristX  + "," +  rightWristY);
         lscore = result[0].pose.keypoints[9].score;
+        rscore = result[0].pose.keypoints[10].score;
     }
 }
 

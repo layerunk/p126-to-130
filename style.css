@@ -31,6 +31,11 @@ canvas{
 
 #speed{
     float:left;
+    background-color: red;
+    color: white;
+    width:fit-content;
+    height: fit-content;
+    font-size: 20px;
 }
 
 #speedgif{
@@ -41,10 +46,19 @@ canvas{
 
 #volume{
     float:right;
+    background-color: red;
+    color: white;
+    width:fit-content;
+    height: fit-content;
+    font-size: 20px;
 }
 
 #volumegif{
     float:right;
     width:200px;
     border-radius: 100px;
+}
+
+#click3{
+    margin-right: 40px;
 }
